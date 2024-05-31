@@ -11,7 +11,8 @@
         "test": "jest --watchAll",
         "lint": "expo lint",
         "prepare": "husky",
-        "build:dev": "eas build --profile development-simulator --platform ios"
+        "build:dev": "eas build --profile development-simulator --platform ios",
+        "build:android": "eas build --profile development --platform android"
     },
     "lint-staged": {
         "**/*": "prettier --write --ignore-unknown"
