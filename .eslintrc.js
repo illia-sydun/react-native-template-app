@@ -30,5 +30,8 @@ module.exports = {
         'prettier/prettier': 'error',
         'no-case-declarations': 'off',
         'no-unused-expressions': 'off',
+        'react/react-in-jsx-scope': 'off',
+        'react/jsx-uses-react': 'off',
+        'react/jsx-filename-extension': [1, { extensions: ['.tsx', '.ts'] }],
     },
 };
