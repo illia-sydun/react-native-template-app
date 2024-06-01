@@ -1,7 +1,7 @@
 {
     "expo": {
-        "name": "dreamify",
-        "slug": "dreamify",
+        "name": "react-native-template-app",
+        "slug": "react-native-template-app",
         "version": "1.0.0",
         "jsEngine": "hermes",
         "orientation": "portrait",
@@ -15,14 +15,14 @@
         },
         "ios": {
             "supportsTablet": true,
-            "bundleIdentifier": "com.isydun.dreamify"
+            "bundleIdentifier": "com.isydun.react-native-template-app"
         },
         "android": {
             "adaptiveIcon": {
                 "foregroundImage": "./assets/images/adaptive-icon.png",
                 "backgroundColor": "#ffffff"
             },
-            "package": "com.isydun.dreamify"
+            "package": "com.isydun.react-native-template-app"
         },
         "web": {
             "bundler": "metro",

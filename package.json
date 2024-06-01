@@ -1,5 +1,5 @@
 {
-    "name": "dreamify",
+    "name": "react-native-template-app",
     "main": "expo-router/entry",
     "version": "1.0.0",
     "scripts": {
