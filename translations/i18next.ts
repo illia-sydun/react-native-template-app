@@ -16,10 +16,10 @@ export const resources = {
 
 export const defaultLanguage = 'en';
 
-const { languageCode } = Localization.getLocales()[0];
+const languageCode = Localization?.getLocales()[0]?.languageCode;
 
 i18next.use(initReactI18next).init({
-    lng: languageCode || defaultLanguage,
+    lng: languageCode ?? defaultLanguage,
     fallbackLng: defaultLanguage,
     compatibilityJSON: 'v3',
     resources,

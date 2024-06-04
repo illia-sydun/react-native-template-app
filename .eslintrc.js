@@ -34,5 +34,8 @@ module.exports = {
         'react/jsx-uses-react': 'off',
         'react/jsx-filename-extension': [1, { extensions: ['.tsx', '.ts'] }],
         'import/extensions': 'off',
+        'global-require': 0,
+        'react/require-default-props': 'off',
+        'react/style-prop-object': 'off',
     },
 };
