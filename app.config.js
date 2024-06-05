@@ -2,6 +2,7 @@ module.exports = {
     expo: {
         name: 'react-native-template-app',
         slug: 'react-native-template-app',
+        owner: 'isydun',
         version: '1.0.0',
         jsEngine: 'hermes',
         orientation: 'portrait',
