@@ -12,6 +12,7 @@ web-build/
 *.tsbuildinfo
 ios/
 android/
+*.env
 
 # macOS
 .DS_Store
