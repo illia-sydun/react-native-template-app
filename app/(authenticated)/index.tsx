@@ -1,12 +1,12 @@
 import { useUser } from '@clerk/clerk-expo';
-import { Text, View } from 'react-native';
+import { View, Text } from 'react-native';
 
 export default function Page() {
     const { user } = useUser();
 
     return (
         <View>
-            <Text>
+            <Text className='color-primary'>
                 Hello{' '}
                 {user?.firstName ??
                     user?.emailAddresses[0]?.emailAddress ??

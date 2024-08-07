@@ -15,7 +15,8 @@
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
         "paths": {
-            "@/*": ["./*"]
+            "@/*": ["./*"],
+            "~/*": ["*"]
         }
     },
     "include": [

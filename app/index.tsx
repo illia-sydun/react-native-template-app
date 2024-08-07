@@ -1,4 +1,4 @@
-import '../translations/i18next';
+import '@/translations/i18next';
 
 import { View } from 'react-native';
 import AnimatedIntro from '@/components/AnimatedIntro';

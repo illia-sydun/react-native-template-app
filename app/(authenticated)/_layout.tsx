@@ -1,6 +1,7 @@
 import { Stack } from 'expo-router/stack';
 import { Redirect } from 'expo-router';
 import { useAuth } from '@clerk/clerk-expo';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 export default function Layout() {
     const { isSignedIn } = useAuth();
@@ -9,5 +10,11 @@ export default function Layout() {
         return <Redirect href='/' />;
     }
 
-    return <Stack />;
+    return (
+        <Stack
+            screenOptions={{
+                headerRight: () => <ThemeToggle />,
+            }}
+        />
+    );
 }

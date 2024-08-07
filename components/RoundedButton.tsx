@@ -1,17 +1,18 @@
 import { Pressable, Text } from 'react-native';
 import { BlurView } from 'expo-blur';
-import { ComponentProps } from 'react';
+import { ComponentProps, forwardRef } from 'react';
 
 export type RoundedButtonProps = ComponentProps<typeof Pressable> & {
     title: string;
 };
 
-export function RoundedButton({
-    title,
-    ...pressableProps
-}: RoundedButtonProps) {
-    return (
-        <Pressable className='rounded-3xl overflow-hidden' {...pressableProps}>
+export const RoundedButton = forwardRef(
+    ({ title, ...pressableProps }: RoundedButtonProps, ref) => (
+        <Pressable
+            className='rounded-3xl overflow-hidden'
+            ref={ref}
+            {...pressableProps}
+        >
             <BlurView
                 intensity={60}
                 tint='dark'
@@ -23,5 +24,5 @@ export function RoundedButton({
                 </Text>
             </BlurView>
         </Pressable>
-    );
-}
+    ),
+);
