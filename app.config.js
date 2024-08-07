@@ -39,7 +39,7 @@ module.exports = {
                 origin: false,
             },
             eas: {
-                projectId: '7686b84d-bb62-457c-8dd6-441a714d0024',
+                projectId: '7cd6e328-903b-440d-a27c-86e79bb88324',
             },
         },
     },

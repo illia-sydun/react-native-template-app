@@ -2,6 +2,7 @@ import { z } from 'zod';
 
 const envSchema = z.object({
     EXPO_PUBLIC_ENV_VARIABLE: z.string().min(1),
+    EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string().min(1),
 });
 
 const env = envSchema.safeParse(process.env);
