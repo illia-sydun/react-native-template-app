@@ -1,5 +1,5 @@
 import { MoonStar } from 'lucide-react-native';
-import { iconWithClassName } from '@/helpers/nativewind';
+import { iconWithClassName } from './iconWithClassName';
 
 iconWithClassName(MoonStar);
 

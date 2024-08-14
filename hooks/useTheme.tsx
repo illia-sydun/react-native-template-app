@@ -1,17 +1,16 @@
-import { useAndroidNavigationBarTheme } from '@/hooks/nativewind/useAndroidNavigationBarTheme';
 import { useMMKVString } from 'react-native-mmkv';
 import { useColorScheme as useNativewindColorScheme } from 'nativewind/dist/stylesheet';
+import { setAndroidNavigationBarTheme } from '@/lib/setAndroidNavigationBarTheme';
 
 export const useTheme = () => {
     const [theme, setTheme] = useMMKVString('theme');
     const { setColorScheme } = useNativewindColorScheme();
-    const { setNavigationBarTheme } = useAndroidNavigationBarTheme();
 
     const isDarkTheme = theme === 'dark';
 
     const handleSetTheme = (newTheme: 'light' | 'dark') => {
         setColorScheme(newTheme);
-        setNavigationBarTheme(newTheme);
+        setAndroidNavigationBarTheme(newTheme);
         setTheme(newTheme);
     };
 
