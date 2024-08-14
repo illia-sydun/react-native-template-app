@@ -16,33 +16,67 @@ import Animated, {
 } from 'react-native-reanimated';
 import colors from 'tailwindcss/colors';
 import { ReText } from 'react-native-redash';
+import { useTheme } from '@/hooks/useTheme';
 
-const config = [
+const darkThemeConfig = [
+    {
+        backgroundColor: colors.black,
+        textColor: colors.white,
+        text: 'This.',
+    },
+    {
+        backgroundColor: colors.black,
+        textColor: colors.white,
+        text: 'Application.',
+    },
+    {
+        backgroundColor: colors.black,
+        textColor: colors.white,
+        text: 'Has.',
+    },
+    {
+        backgroundColor: colors.black,
+        textColor: colors.white,
+        text: 'No.',
+    },
+    {
+        backgroundColor: colors.black,
+        textColor: colors.white,
+        text: 'Meaning.',
+    },
+];
+
+const lightThemeConfig = [
     {
         backgroundColor: colors.white,
         textColor: colors.black,
-        text: 'Today.',
+        text: 'This.',
     },
     {
-        backgroundColor: colors.emerald['800'],
-        textColor: colors.pink['500'],
-        text: 'Is.',
+        backgroundColor: colors.white,
+        textColor: colors.black,
+        text: 'Application.',
     },
     {
-        backgroundColor: colors.orange['600'],
-        textColor: colors.blue['800'],
-        text: 'Another.',
+        backgroundColor: colors.white,
+        textColor: colors.black,
+        text: 'Has.',
     },
     {
-        backgroundColor: colors.slate['800'],
-        textColor: colors.zinc['300'],
-        text: 'Day.',
+        backgroundColor: colors.white,
+        textColor: colors.black,
+        text: 'No.',
+    },
+    {
+        backgroundColor: colors.white,
+        textColor: colors.black,
+        text: 'Meaning.',
     },
 ];
 
 const ballSize = 47;
 const textPadding = 9;
-const delay = 800;
+const delay = 600;
 const duration = 600;
 
 const styles = StyleSheet.create({
@@ -79,6 +113,9 @@ const styles = StyleSheet.create({
 });
 
 function AnimatedIntro() {
+    const { isDarkTheme } = useTheme();
+    const config = isDarkTheme ? darkThemeConfig : lightThemeConfig;
+
     const { width } = useWindowDimensions();
     const middle = width / 2 - ballSize / 2;
 

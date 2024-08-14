@@ -5,12 +5,13 @@ import { SplashScreen, Stack } from 'expo-router';
 import { ThemeProvider } from '@react-navigation/native';
 import { ClerkProvider, ClerkLoaded } from '@clerk/clerk-expo';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { clerkTokenStorage } from '@/store/config';
 import { useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { DARK_THEME, LIGHT_THEME } from '@/constants/nativewind';
 import { Platform } from 'react-native';
+import { PortalHost } from '@rn-primitives/portal';
+import { DARK_THEME, LIGHT_THEME } from '@/constants/nativewind';
 import { useTheme } from '@/hooks/useTheme';
+import { clerkTokenStorage } from '@/store/config';
 
 export {
     // Catch any errors thrown by the Layout component.
@@ -29,9 +30,7 @@ export default function RootLayout() {
             document.documentElement.classList.add('bg-background');
         }
 
-        if (!theme) {
-            setTheme('dark');
-        }
+        setTheme(theme === 'light' ? 'light' : 'dark');
 
         SplashScreen.hideAsync();
     }, []);
@@ -56,9 +55,17 @@ export default function RootLayout() {
                                 name='(authenticated)'
                                 options={{
                                     headerShown: false,
+                                    animation: 'fade',
+                                }}
+                            />
+                            <Stack.Screen
+                                name='(unauthenticated)'
+                                options={{
+                                    headerShown: false,
                                 }}
                             />
                         </Stack>
+                        <PortalHost />
                     </GestureHandlerRootView>
                 </ClerkLoaded>
             </ClerkProvider>

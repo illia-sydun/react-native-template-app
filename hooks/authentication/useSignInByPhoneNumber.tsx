@@ -1,12 +1,20 @@
 import { useSignIn } from '@clerk/clerk-expo';
 import { useRouter } from 'expo-router';
-import { PhoneCodeFactor, SignInFirstFactor } from '@clerk/types';
+import {
+    ClerkAPIError,
+    PhoneCodeFactor,
+    SignInFirstFactor,
+} from '@clerk/types';
+import { isClerkAPIResponseError } from '@clerk/shared';
 
 export const useSignInByPhoneNumber = () => {
     const { isLoaded, signIn, setActive } = useSignIn();
     const router = useRouter();
 
-    const handleSignIn = async (phoneNumber: string) => {
+    const handleSignIn = async (
+        phoneNumber: string,
+        beforeRedirecting?: () => void,
+    ): Promise<{ error: ClerkAPIError } | undefined> => {
         if (!isLoaded || !signIn) {
             return;
         }
@@ -31,15 +39,26 @@ export const useSignInByPhoneNumber = () => {
                     phoneNumberId,
                 });
 
-                router.push('/signin/verify');
+                beforeRedirecting?.();
+
+                router.push({
+                    pathname: '/signin/verify',
+                    params: { phoneNumber: phoneNumberId },
+                });
             }
-        } catch (err) {
-            console.error(JSON.stringify(err, null, 2));
+        } catch (e) {
+            // console.error(JSON.stringify(e, null, 2));
+
+            if (isClerkAPIResponseError(e)) {
+                return { error: e.errors[0] };
+            }
         }
     };
 
-    const handleVerifyPhoneNumber = async (verificationCode: string) => {
-        if (!isLoaded && !signIn) return null;
+    const handleVerifyPhoneNumber = async (
+        verificationCode: string,
+    ): Promise<{ error: ClerkAPIError } | undefined> => {
+        if (!isLoaded && !signIn) return;
 
         try {
             const signInAttempt = await signIn.attemptFirstFactor({
@@ -51,15 +70,34 @@ export const useSignInByPhoneNumber = () => {
                 await setActive({ session: signInAttempt.createdSessionId });
                 router.replace('/(authenticated)');
             } else {
-                console.error(signInAttempt);
+                // console.error(signInAttempt);
             }
-        } catch (err) {
-            console.error('Error:', JSON.stringify(err, null, 2));
+        } catch (e) {
+            // console.error('Error:', JSON.stringify(e, null, 2));
+            if (isClerkAPIResponseError(e)) {
+                return { error: e.errors[0] };
+            }
+        }
+    };
+
+    const handleResendVerificationCode = async (phoneNumberId: string) => {
+        if (!isLoaded || !signIn) {
+            return;
+        }
+
+        try {
+            await signIn.prepareFirstFactor({
+                strategy: 'phone_code',
+                phoneNumberId,
+            });
+        } catch (e) {
+            console.error(JSON.stringify(e));
         }
     };
 
     return {
         signIn: handleSignIn,
         verifyPhoneNumber: handleVerifyPhoneNumber,
+        resendVerificationCode: handleResendVerificationCode,
     };
 };
